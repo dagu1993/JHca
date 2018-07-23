@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="xxx" width="300" height="300">
+ 
+    </canvas>
+    <button id="eraser">橡皮擦</button>
+    <script>
+        var yyy = document.getElementById('xxx')
+////////////////////////////////////////////////////////////////////////
+       //设置宽高
+         setCanvasSize()   //设置宽高
+
+        window.onresize = function(){
+            setCanvasSize()
+        }         //监听让画布随着变化而变化
+
+        function setCanvasSize(){
+        var pageWidth = document.documentElement.clientWidth
+        var pageHeight = document.documentElement.clientHeight
+
+        yyy.width = pageWidth
+        yyy.height = pageHeight       //设置画布长宽函数
+        }
+////////////////////////////////////////////////////////////////////////////////////////////
+        var context = yyy.getContext('2d')  //画布都要写感觉。
+
+
+        var using = false  //在使用=false
+        var lastPoint = {x: undefined,y: undefined} //这是最开始的点，现在还没有鼠标事件，x y得值都还不知道呢。
+        yyy.onmousedown = function(aaa){  //鼠标点击事件
+            var x = aaa.clientX  //clientx y 是相对于视口位置
+            var y = aaa.clientY
+            if(ueraserEnabled){
+            using = true
+            context.clearRect(x-5,y-5,10,10)  //如果用了橡皮擦，就设置一个橡皮擦  clearRect就是橡皮擦
+            }else{
+            using= true
+            lastPoint = {x:x,y:y} //从上面点击获取了xy的值
+            console.log(x,y)
+            // 用drawCrircle(x,y,1)画圈，大脑中想就好了，实际上不用了。
+            }
+          }
+        
+        yyy.onmousemove = function(aaa){  //鼠标移动事件
+            var x = aaa.clientX  //clientx y 是相对于视口位置
+            var y = aaa.clientY
+            if(ueraserEnabled){      //只是开启了橡皮擦
+                if(using){           //判断是否在用橡皮擦
+                    context.clearRect(x-5,y-5,10,10) //-5是为了让鼠标在正方形橡皮擦正中间
+                }
+           
+            }else{
+            if(using){ 
+            var newPoint = {x:x,y:y} //在鼠标移动之后会获得一个新的点，这个新的点叫做newPoint，值也是从上面获得。
+            // 用drawCrircle(x,y,1)画圈，大脑中想就好了，实际上不用了。
+            drawline(lastPoint.x, lastPoint.y, newPoint.x, newPoint.y)
+            lastPoint = newPoint   //让每次移动的点都更新，lastpoint会一直变化，就可以一直划线，避免第一个点一直不动。
+            }
+            }
+
+        }
+        yyy.onmouseup = function(aaa){  //鼠标抬起事件
+          using = false  //松开就结束  结束 
+        }
+
+
+        function drawCrircle(x,y,radius){            //这是在画圆  画圆的函数
+            context.beginPath()
+            context.arc(x,y,radius,0,Math.PI*2);
+            context.fill()                    
+        }
+
+        function drawline(x1,y1,x2,y2){ //x1 2 y1 2 起点终点   这是划线函数从x1y1 连接到x2y2 
+            context.beginPath();
+            context.strokeStyle = 'black'
+            context.moveTo(x1, y1) // 起点
+            context.lineWidth = 5
+            context.lineTo(x2, y2) // 终点
+            context.stroke()
+            context.closePath()
+        }
+        /**************************************************************************************************/
+        //橡皮擦声明
+        var ueraserEnabled = false  //eraser开启 =false
+        eraser.onclick = function(){
+            ueraserEnabled = !ueraserEnabled  //!fales  就是true
+        }
+    </script>
+</body>
+</html>
