@@ -2,11 +2,20 @@
     margin: 0;
 }
 #xxx{
-    background: green;
+    background: grey;
     display:block;
 }
-button{
+.actions{
     position: fixed;   /*绝对定位*/
     bottom: 0;
     left: 0;
+}
+.actions > #brush{
+    display: none;
+}
+.actions.x > #brush{
+    display: inline-block;
+}
+.actions.x > #eraser{
+    display: none;
 }
