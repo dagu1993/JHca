@@ -1,12 +1,28 @@
+.icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
 *{
     margin: 0;
 }
 #xxx{
-    background: green;
     display:block;
 }
-button{
+.actions{
     position: fixed;   /*绝对定位*/
-    bottom: 0;
+    top: 0;
     left: 0;
+    padding: 20px;
+}
+.actions svg{
+    width: 2em;
+    height: 1.5em;
+    transition: all 0.3s;   /*让点击之后会有0.3的延迟*/
+    margin: 0 10px;        /*让icon的左右有一点边距*/
+}
+.actions svg.active{
+    fill:red;
+    transform: scale(1.2);
 }
