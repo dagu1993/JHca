@@ -9,6 +9,9 @@ ul,ol {list-style: none;}
     margin: 0;
     padding: 0;
 }
+body{
+    overflow: hidden;
+}
 #xxx{
     display:block;
 }
@@ -39,6 +42,7 @@ ul,ol {list-style: none;}
     border-radius: 50%;
     border: 3px solid grey;
     margin: 10px 0;
+    transition: all 0.3s;
 }
 .color > li.red{
     background: red;
@@ -48,4 +52,31 @@ ul,ol {list-style: none;}
 }
 .color > li.blue{
     background: blue;
+}
+.color > li.black{
+    background:black;
+}
+.color >li.active{
+    border: 3px solid grey;
+    transform: scale(1.2);
+
+}
+
+.sizes{
+    position: fixed;
+    right: 25px;
+    top: 10px;
+}
+.sizes > li{
+    margin:20px 0;
+}
+.sizes > .thin{
+    height: 0;
+    width:20px;
+    border-top: 3px solid black; 
+}
+.sizes > .thick{
+    height: 0;
+    width:20px;
+    border-top: 6px solid black; 
 }

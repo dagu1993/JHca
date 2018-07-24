@@ -22,9 +22,14 @@
             </svg>
     </div>
     <ol class="color">
-    <li class="red"></li>
-    <li class="green"></li>
-    <li class="blue"></li>
+    <li id="red" class="red"></li>
+    <li id="green" class="green"></li>
+    <li id="blue" class="blue"></li>
+    <li id="black" class="black"></li>
+    </ol>
+    <ol class="sizes">
+        <li id="thin" class="thin"></li>
+        <li id="thick" class="thick"></li>
     </ol>
     <script>
         var yyy = document.getElementById('xxx')
@@ -52,7 +57,36 @@
         }
 
 
+    red.onclick = function(){
+        context.strokeStyle = 'red'
+        red.classList.add('active')
+        green.classList.remove('active')
+        blue.classList.remove('active')
+        black.classList.remove('active')
+    }
+    green.onclick = function(){
+        context.strokeStyle = 'green'
+        red.classList.remove('active')
+        green.classList.add('active')
+        blue.classList.remove('active')
+        black.classList.remove('active')
+    }
+    blue.onclick = function(){
+        context.strokeStyle = 'blue'
+        red.classList.remove('active')
+        green.classList.remove('active')
+        blue.classList.add('active')
+        black.classList.remove('active')
+    }
+    black.onclick = function(){
+        context.strokeStyle = 'black'
+        red.classList.remove('active')
+        green.classList.remove('active')
+        blue.classList.remove('active')
+        black.classList.add('active')
+    }
 
+    /*******************************************/
         function autoSetCanvasSize(canvas){
             setCanvasSize()   //设置宽高
 
@@ -78,7 +112,6 @@
 
         function drawline(x1,y1,x2,y2){ //x1 2 y1 2 起点终点   这是划线函数从x1y1 连接到x2y2 
             context.beginPath();
-            context.strokeStyle = 'black'
             context.moveTo(x1, y1) // 起点
             context.lineWidth = 5
             context.lineTo(x2, y2) // 终点
