@@ -1,3 +1,4 @@
+ul,ol {list-style: none;}
 .icon {
     width: 1em; height: 1em;
     vertical-align: -0.15em;
@@ -6,6 +7,7 @@
 }
 *{
     margin: 0;
+    padding: 0;
 }
 #xxx{
     display:block;
@@ -24,5 +26,26 @@
 }
 .actions svg.active{
     fill:red;
-    transform: scale(1.2);
+    transform: scale(1.2); /*让图片被点击的时候变大一点*/
+}
+.color{
+    position: fixed;
+    top: 50px;
+    left: 28px;
+}
+.color >li{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 3px solid grey;
+    margin: 10px 0;
+}
+.color > li.red{
+    background: red;
+}
+.color > li.green{
+    background: green;
+}
+.color > li.blue{
+    background: blue;
 }

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
@@ -13,13 +14,18 @@
  
     </canvas>
     <div id="actions" class="actions">
-            <svg id="pen" class="icon">
+            <svg id="pen" class="active icon">
                     <use xlink:href="#icon-pencil"></use>
             </svg>
             <svg id="eraser" class="icon">
                     <use xlink:href="#icon-icon-test"></use>
             </svg>
     </div>
+    <ol class="color">
+    <li class="red"></li>
+    <li class="green"></li>
+    <li class="blue"></li>
+    </ol>
     <script>
         var yyy = document.getElementById('xxx')
         var context = yyy.getContext('2d')  //画布都要写感觉。
