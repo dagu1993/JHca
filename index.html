@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="style.css">
-    <script src="//at.alicdn.com/t/font_760963_4bvozwi8fcb.js"></script>
+    <script src="//at.alicdn.com/t/font_760963_4tiqodlr9ul.js"></script>
 </head>
 <body>
     <canvas id="xxx" width="300" height="300">
@@ -19,6 +19,12 @@
             </svg>
             <svg id="eraser" class="icon">
                     <use xlink:href="#icon-icon-test"></use>
+            </svg>
+            <svg id="clear" class="icon">
+                <use xlink:href="#icon-custom-clear"></use>
+            </svg>
+            <svg id="download" class="icon">
+                <use xlink:href="#icon-save"></use>
             </svg>
     </div>
     <ol class="color">
@@ -34,6 +40,7 @@
     <script>
         var yyy = document.getElementById('xxx')
         var context = yyy.getContext('2d')  //画布都要写感觉。
+        var lineWidth = 5
 ////////////////////////////////////////////////////////////////////////
        //设置宽高
        autoSetCanvasSize(yyy)
@@ -54,6 +61,19 @@
             eraserEnabled = true
             eraser.classList.add('active')
             pen.classList.remove('active')
+        }
+        clear.onclick = function(){
+            context.clearRect(0, 0, yyy.width, yyy.height);
+        }
+        download.onclick = function(){
+            var url = yyy.toDataURL("image/png")
+            console.log(url)
+            var a = document.createElement('a')
+            document.body.appendChild(a)
+            a.href = url
+            a.download = '画'
+            target = '_blank'
+            a.click()
         }
 
 
@@ -86,6 +106,13 @@
         black.classList.add('active')
     }
 
+    thin.onclick = function(){
+            lineWidth = 5
+    }
+    thick.onclick = function(){
+            lineWidth = 10
+    }
+
     /*******************************************/
         function autoSetCanvasSize(canvas){
             setCanvasSize()   //设置宽高
@@ -113,7 +140,7 @@
         function drawline(x1,y1,x2,y2){ //x1 2 y1 2 起点终点   这是划线函数从x1y1 连接到x2y2 
             context.beginPath();
             context.moveTo(x1, y1) // 起点
-            context.lineWidth = 5
+            context.lineWidth = lineWidth
             context.lineTo(x2, y2) // 终点
             context.stroke()
             context.closePath()
